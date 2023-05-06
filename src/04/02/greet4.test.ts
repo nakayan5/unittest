@@ -1,6 +1,8 @@
 import { greet, sayGoodBye } from "./greet";
 
 jest.mock("./greet", () => ({
+  // q: 以下の関数はどういう関数ですか？
+  // a: 以下の関数は、jest.requireActual() で取得した greet をモック化した関数です。
   ...jest.requireActual("./greet"),
   sayGoodBye: (name: string) => `Good bye, ${name}.`,
 }));

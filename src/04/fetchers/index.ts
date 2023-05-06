@@ -1,6 +1,6 @@
 import type { Article, ArticleInput, Articles, Profile } from "./type";
 
-async function handleResponse(res: Response) {
+async function handleResponse<T>(res: Response): Promise<T> {
   const data = await res.json();
   if (!res.ok) {
     throw data;
@@ -10,17 +10,17 @@ async function handleResponse(res: Response) {
 
 const host = (path: string) => `https://myapi.testing.com${path}`;
 
-export function getMyProfile(): Promise<Profile> {
-  return fetch(host("/my/profile")).then(handleResponse);
+export function getMyProfile() {
+  return fetch(host("/my/profile")).then(handleResponse<Profile>);
 }
 
-export function getMyArticles(): Promise<Articles> {
-  return fetch(host("/my/articles")).then(handleResponse);
+export function getMyArticles() {
+  return fetch(host("/my/articles")).then(handleResponse<Articles>);
 }
 
-export function postMyArticle(input: ArticleInput): Promise<Article> {
+export function postMyArticle(input: ArticleInput) {
   return fetch(host("/my/articles"), {
     method: "POST",
     body: JSON.stringify(input),
-  }).then(handleResponse);
+  }).then(handleResponse<Article>);
 }
