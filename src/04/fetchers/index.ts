@@ -4,7 +4,7 @@ async function handleResponse<T>(res: Response): Promise<T> {
   const data = await res.json();
   if (!res.ok) {
     throw data;
-  }
+  } 
   return data;
 }
 
@@ -24,3 +24,4 @@ export function postMyArticle(input: ArticleInput) {
     body: JSON.stringify(input),
   }).then(handleResponse<Article>);
 }
+ 

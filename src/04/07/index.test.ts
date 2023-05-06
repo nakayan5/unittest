@@ -2,15 +2,18 @@ import { greetByTime } from ".";
 
 describe("greetByTime(", () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    // jestに偽のタイマーを使うように指示する
+    jest.useFakeTimers(); // このテストスイート内で Date.now() をモックする
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    // jestに真のタイマーを使うように指示する
+    jest.useRealTimers(); // 他のテストスイートに影響を与えないように、元に戻す
   });
 
   test("朝は「おはよう」を返す", () => {
-    jest.setSystemTime(new Date(2023, 4, 23, 8, 0, 0));
+    // 偽のタイマーで使用する日付を設定する
+    jest.setSystemTime(new Date(2023, 4, 23, 8, 0, 0)); // 2023年5月23日の8時0分0秒に設定
     expect(greetByTime()).toBe("おはよう");
   });
 

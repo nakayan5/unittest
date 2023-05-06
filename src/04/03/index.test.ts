@@ -7,7 +7,7 @@ jest.mock("../fetchers");
 describe("getGreet", () => {
   test("データ取得成功時：ユーザー名がない場合", async () => {
     // getMyProfile が resolve した時の値を再現
-    jest.spyOn(Fetchers, "getMyProfile").mockResolvedValueOnce({
+    jest.spyOn(Fetchers, 'getMyProfile').mockResolvedValueOnce({
       id: "xxxxxxx-123456",
       email: "taroyamada@myapi.testing.com",
     });
